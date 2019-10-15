@@ -27,6 +27,10 @@ class ConfigSyncServiceProvider extends ServiceProvider
             __DIR__.'/config/config-sync.php' => config_path('config-sync.php'),
         ]);
 
+        $this->mergeConfigFrom(
+            __DIR__.'/config/config-sync.php', 'config-sync'
+        );
+
         if ($this->app->runningInConsole()) {
             $this->commands([
                 ConfigSync::class,

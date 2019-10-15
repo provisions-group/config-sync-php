@@ -1,0 +1,25 @@
+{
+    "name": "cashexpress/config-sync",
+    "description": "Add remote configuration synchronization to Laravel",
+    "type": "project",
+    "license": "internal",
+    "authors": [
+        {
+            "name": "Eric Hendrickson",
+            "email": "ehendrickson@provisionsgroup.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "CashExpress\\ConfigSync\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "CashExpress\\ConfigSync"
+            ]
+        }
+    }    
+}

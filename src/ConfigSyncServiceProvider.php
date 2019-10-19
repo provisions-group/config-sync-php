@@ -38,6 +38,7 @@ class ConfigSyncServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 ConfigSync::class,
+                UpdateConfigsForSecureEnv::class
             ]);
         }
     }

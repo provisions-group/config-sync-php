@@ -12,11 +12,11 @@ function env_secure($key, $default = null) {
   $encrypter = new Encrypter($encryptionKey, 'AES-256-CBC');
 
   $credentials = new Credentials($encrypter); 
-  $credentials->load(env('APP_CONFIG_FILE'));
+  $credentials->load(env('APP_CONFIG_FILE','/tmp/config.safe.env'));
 
   $value = $credentials->get($key);
   if($value == null) {
-    return env($key, $default = null);
+    return env($key, $default);
   }
   else {
     return $credentials->get($key);

@@ -5,7 +5,7 @@ namespace CashExpress\ConfigSync\Environments;
 use Illuminate\Console\Command;
 use CashExpress\ConfigSync\Connections\ConnectionVault;
 
-class ConfigEnvironmentLocalVault extends ConfigEnvironmentBase
+class ConfigEnvironmentDeveloperVault extends ConfigEnvironmentBase
 {
   private $environment;
   private $config;
@@ -17,7 +17,7 @@ class ConfigEnvironmentLocalVault extends ConfigEnvironmentBase
 
   public function getEnvironmentConnection($credentials) : ConnectionVault {
     $connectionVault = new ConnectionVault($this->config['base_uri']);
-    $connectionVault->connectByToken($credentials['token']);
+    $connectionVault->connectByLdapUserPass($credentials['username'], $credentials['password']);
     return $connectionVault;
   }
 

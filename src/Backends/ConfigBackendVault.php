@@ -16,11 +16,28 @@ class ConfigBackendVault extends ConfigBackendBase
   public function sync(ConfigEnvironmentInterface $configEnvironment, ConnectionInterface $vaultConnection) {
     $vaultMountPath = $configEnvironment->getConfig()['mount_to_sync'];
     $vaultSecretPath = $configEnvironment->getConfig()['secret_to_sync'];
-    $data = json_decode($vaultConnection->getClient()->get($vaultMountPath."/data/".$vaultSecretPath)->getBody());
+
+    try {
+      $data = json_decode($vaultConnection->getClient()->get($vaultMountPath."/data/".$vaultSecretPath)->getBody());
+    }
+    catch(\Throwable $e) {
+      //TODO: add throwable errors
+      throw $e;
+      return false;
+    }
+    
     $dataToStore = json_decode(json_encode($data->data->data), true);
 
     $filePath = $configEnvironment->getConfig()['config_file_path'];
 
-    $this->encryptAndStore($dataToStore, $filePath);
+    try {
+      $this->encryptAndStore($dataToStore, $filePath);
+    }
+    catch(\Throwable $e) {
+      //TODO: add throwable errors
+      throw $e;
+      return false;
+    }
+    return true;
   }
 }

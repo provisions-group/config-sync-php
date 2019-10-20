@@ -12,7 +12,7 @@ use CashExpress\ConfigSync\Backends\ConfigBackendBase;
 use CashExpress\ConfigSync\Backends\ConfigBackendFactory;
 use CashExpress\ConfigSync\Environments\ConfigEnvironmentFactory;
 
-class UpdateConfigsForSecureEnv extends Command
+class UpdateConfigsForSecureEnv extends ConfigSyncCommandBase
 {
     /**
      * The name and signature of the console command.
@@ -152,35 +152,5 @@ class UpdateConfigsForSecureEnv extends Command
 
         //spacer line
         $this->info("");
-    }
-
-    private function stampdate() {
-        return $this->timestampFormat(date("m-d-Y H:i:s T"));
-    }
-
-    private function heading($text) {
-        $table = new Table($this->output);
-        $table->setRows([[$this->stampdate(), $this->headingFormat($text)]]);
-        $table->render(); 
-    }
-
-    private function successFormat($text) {
-        return "<fg=green>{$text}</>";
-    }
-
-    private function failureFormat($text) {
-        return "<fg=red>{$text}</>";
-    }
-
-    private function timestampFormat($text) {
-        return "<fg=yellow>{$text}</>";
-    }
-
-    private function headingFormat($text) {
-        return "<fg=blue>{$text}</>";
-    }
-
-    private function titleFormat($text) {
-        return "<fg=red;options=bold>{$text}</>";
     }
 }

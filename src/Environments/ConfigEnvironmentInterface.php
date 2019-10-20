@@ -6,5 +6,5 @@ use Illuminate\Console\Command;
 
 interface ConfigEnvironmentInterface 
 {
-  public function getEnvironmentConnection();
+  public function getEnvironmentConnection(Array $credentials);
 }

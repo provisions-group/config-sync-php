@@ -10,7 +10,7 @@ use CashExpress\ConfigSync\Backends\ConfigBackendBase;
 use CashExpress\ConfigSync\Backends\ConfigBackendFactory;
 use CashExpress\ConfigSync\Environments\ConfigEnvironmentFactory;
 
-class ConfigSync extends Command
+class ConfigSync extends ConfigSyncCommandBase
 {
     /**
      * The name and signature of the console command.
@@ -181,40 +181,27 @@ class ConfigSync extends Command
         }
 
         $configEnvrionment = (new ConfigEnvironmentFactory())->getConfigEnvironment($environment);
-        $configEnvrionmentConnection = $configEnvrionment->getEnvironmentConnection();
-        $configBackend->sync($configEnvrionment, $configEnvrionmentConnection);
+
+        if($configEnvrionment->getConfig()['auth'] == "token") {
+            $credentials['token'] = $configEnvrionment->getConfig()['token'];
+          }
+          
+        if($configEnvrionment->getConfig()['auth'] == "ldap") {
+            $credentials['username'] = $this->ask('LDAP Username');
+            $credentials['password'] = $this->secret('LDAP Password');
+        }
+          
+        $configEnvrionmentConnection = $configEnvrionment->getEnvironmentConnection($credentials);
+        $successFlag = $configBackend->sync($configEnvrionment, $configEnvrionmentConnection);
+
+        if(!$successFlag) {
+            $this->heading("Step 2. ...uh oh, data did not synchronize!");
+        }
+        else {
+            $this->heading("Step 2. ...done - data sychronized to ecrypted file!");
+        }
 
         //spacer line
         $this->info("");
-    }
-
-    private function stampdate() {
-        return $this->timestampFormat(date("m-d-Y H:i:s T"));
-    }
-
-    private function heading($text) {
-        $table = new Table($this->output);
-        $table->setRows([[$this->stampdate(), $this->headingFormat($text)]]);
-        $table->render(); 
-    }
-
-    private function successFormat($text) {
-        return "<fg=green>{$text}</>";
-    }
-
-    private function failureFormat($text) {
-        return "<fg=red>{$text}</>";
-    }
-
-    private function timestampFormat($text) {
-        return "<fg=yellow>{$text}</>";
-    }
-
-    private function headingFormat($text) {
-        return "<fg=blue>{$text}</>";
-    }
-
-    private function titleFormat($text) {
-        return "<fg=red;options=bold>{$text}</>";
     }
 }

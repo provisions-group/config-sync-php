@@ -17,7 +17,7 @@ return [
       'auth' => 'token', //can be token, password, or kubernetes
       'token' => 'HEY12345', //only used if authType = token
       'sealwrap' => false,
-      'config_file_path' => env('APP_CONFIG_FILE','/tmp/config.safe.env')
+      'config_file_path' => env('APP_CONFIG_FILE','./config.safe.env')
     ],
     'developer' => [
       'class' => CashExpress\ConfigSync\Environments\ConfigEnvironmentDeveloperVault::class,

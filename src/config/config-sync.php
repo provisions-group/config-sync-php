@@ -20,9 +20,14 @@ return [
       'config_file_path' => env('APP_CONFIG_FILE','./config.safe.env')
     ],
     'developer' => [
+      'base_uri' => 'https://vault.cashexpressllc.com',
+      'mount_to_sync' => env('DEV_VAULT_MOUNT',''),
+      'secret_to_sync' => env('DEV_VAULT_SECRET',''),
+      'api_version' => 'v1',
       'class' => CashExpress\ConfigSync\Environments\ConfigEnvironmentDeveloperVault::class,
-      'auth' => 'ldap', //can be token, password, or kubernetes
+      'auth' => 'ldap', //can be token, ldap, or kubernetes
       'sealwrap' => false,
+      'config_file_path' => env('APP_CONFIG_FILE','./config.safe.env')
     ],
   ]
 ];

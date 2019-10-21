@@ -21,7 +21,7 @@ return [
     ],
     'developer' => [
       'class' => CashExpress\ConfigSync\Environments\ConfigEnvironmentDeveloperVault::class,
-      'auth' => 'password', //can be token, password, or kubernetes
+      'auth' => 'ldap', //can be token, password, or kubernetes
       'sealwrap' => false,
     ],
   ]

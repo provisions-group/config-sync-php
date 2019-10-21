@@ -22,7 +22,6 @@ class ConfigBackendVault extends ConfigBackendBase
     }
     catch(\Throwable $e) {
       //TODO: add throwable errors
-      throw $e;
       return false;
     }
     
@@ -35,7 +34,6 @@ class ConfigBackendVault extends ConfigBackendBase
     }
     catch(\Throwable $e) {
       //TODO: add throwable errors
-      throw $e;
       return false;
     }
     return true;

@@ -10,7 +10,7 @@ return [
   'environments' => [
     'local' => [
       'class' => CashExpress\ConfigSync\Environments\ConfigEnvironmentLocalVault::class,
-      'base_uri' => 'http://{env("VAULT", "localhost")}:8200',
+      'base_uri' => 'http://' . env("VAULT", "localhost") . ':8200',
       'mount_to_sync' => 'auditor-portal',
       'secret_to_sync' => 'local/developer',
       'api_version' => 'v1',

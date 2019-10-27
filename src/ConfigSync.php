@@ -182,6 +182,7 @@ class ConfigSync extends ConfigSyncCommandBase
 
         $configEnvrionment = (new ConfigEnvironmentFactory())->getConfigEnvironment($environment);
 
+        //TODO: need to move these three into their matching ConfigEnvironmentXYZ
         if($configEnvrionment->getConfig()['auth'] == "token") {
             $credentials['token'] = $configEnvrionment->getConfig()['token'];
           }
@@ -189,6 +190,11 @@ class ConfigSync extends ConfigSyncCommandBase
         if($configEnvrionment->getConfig()['auth'] == "ldap") {
             $credentials['username'] = $this->ask('LDAP Username');
             $credentials['password'] = $this->secret('LDAP Password');
+        }
+
+        if($configEnvrionment->getConfig()['auth'] == "kubernetes") {
+            $credentials['jwt'] = file_get_contents('/var/run/secrets/kubernetes.io/serviceaccount/token');
+            $credentials['role'] = $configEnvrionment->getConfig()['role'];
         }
           
         $configEnvrionmentConnection = $configEnvrionment->getEnvironmentConnection($credentials);

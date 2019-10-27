@@ -10,7 +10,7 @@ return [
   'environments' => [
     'local' => [
       'class' => CashExpress\ConfigSync\Environments\ConfigEnvironmentLocalVault::class,
-      'base_uri' => 'http://' . env("VAULT", "localhost") . ':8200',
+      'base_uri' => env('VAULT_URL', 'http://localhost:8200'),
       'mount_to_sync' => 'auditor-portal',
       'secret_to_sync' => 'local/developer',
       'api_version' => 'v1',
@@ -20,12 +20,23 @@ return [
       'config_file_path' => env('APP_CONFIG_FILE','./config.safe.env')
     ],
     'developer' => [
+      'class' => CashExpress\ConfigSync\Environments\ConfigEnvironmentDeveloperVault::class,
       'base_uri' => 'https://vault.cashexpressllc.com',
       'mount_to_sync' => env('DEV_VAULT_MOUNT',''),
       'secret_to_sync' => env('DEV_VAULT_SECRET',''),
       'api_version' => 'v1',
-      'class' => CashExpress\ConfigSync\Environments\ConfigEnvironmentDeveloperVault::class,
       'auth' => 'ldap', //can be token, ldap, or kubernetes
+      'sealwrap' => false,
+      'config_file_path' => env('APP_CONFIG_FILE','./config.safe.env')
+    ],
+    'kubernetes' => [
+      'class' => CashExpress\ConfigSync\Environments\ConfigEnvironmentKubernetesVault::class,
+      'base_uri' => env('VAULT_URL', 'https://vault.cashexpressllc.com'),
+      'mount_to_sync' => env('DEV_VAULT_MOUNT',''),
+      'secret_to_sync' => env('DEV_VAULT_SECRET',''),
+      'api_version' => 'v1',
+      'auth' => 'kubernetes', //can be token, ldap, or kubernetes
+      'role' => 'auditor-portal',
       'sealwrap' => false,
       'config_file_path' => env('APP_CONFIG_FILE','./config.safe.env')
     ],

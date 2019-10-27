@@ -42,6 +42,20 @@ class ConnectionVault extends ConnectionBase
      $this->setClientAndConnectionFromResponse($response);
   }
 
+  public function connectByK8sJwt(string $jwt, string $role) {
+    $options['json']["jwt"] = $jwt;
+    $options['json']["role"] = $role;
+
+    try {
+      $response = json_decode($this->client->post("auth/kubernetes/login", $options)->getBody());
+    }
+    catch(ConnectException $ce) {
+      Log::channel("stderr")->error("Connection timed out.  Is the Vault Container running? Do you need to VPN?");
+      exit();
+    }
+     $this->setClientAndConnectionFromResponse($response);
+  }
+
   private function setClientAndConnectionFromResponse($response) {
     if($response != null) {
       //set the default header to use for future requests

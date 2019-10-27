@@ -22,6 +22,8 @@ class ConfigBackendVault extends ConfigBackendBase
     }
     catch(\Throwable $e) {
       //TODO: add throwable errors
+      Log::channel("stderr")->error("Could not retrieve the data at {$vaultMountPath}/data/{$vaultSecretPath}!");
+      Log::channel("stderr")->error($e->getMessage());
       return false;
     }
     
@@ -34,6 +36,8 @@ class ConfigBackendVault extends ConfigBackendBase
     }
     catch(\Throwable $e) {
       //TODO: add throwable errors
+      Log::channel("stderr")->error("Could not write the data to the safe at {$filePath}!");
+      Log::channel("stderr")->error($e->getMessage());
       return false;
     }
     return true;

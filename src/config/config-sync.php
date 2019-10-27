@@ -22,8 +22,8 @@ return [
     'developer' => [
       'class' => CashExpress\ConfigSync\Environments\ConfigEnvironmentDeveloperVault::class,
       'base_uri' => 'https://vault.cashexpressllc.com',
-      'mount_to_sync' => env('DEV_VAULT_MOUNT',''),
-      'secret_to_sync' => env('DEV_VAULT_SECRET',''),
+      'mount_to_sync' => env('VAULT_MOUNT',''),
+      'secret_to_sync' => env('VAULT_SECRET',''),
       'api_version' => 'v1',
       'auth' => 'ldap', //can be token, ldap, or kubernetes
       'sealwrap' => false,
@@ -32,8 +32,8 @@ return [
     'kubernetes' => [
       'class' => CashExpress\ConfigSync\Environments\ConfigEnvironmentKubernetesVault::class,
       'base_uri' => env('VAULT_URL', 'https://vault.cashexpressllc.com'),
-      'mount_to_sync' => env('DEV_VAULT_MOUNT',''),
-      'secret_to_sync' => env('DEV_VAULT_SECRET',''),
+      'mount_to_sync' => env('VAULT_MOUNT',''),
+      'secret_to_sync' => env('VAULT_SECRET',''),
       'api_version' => 'v1',
       'auth' => 'kubernetes', //can be token, ldap, or kubernetes
       'role' => 'auditor-portal',

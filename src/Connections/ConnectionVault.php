@@ -31,7 +31,10 @@ class ConnectionVault extends ConnectionBase
   }
 
   public function connectByLdapUserPass(string $username, string $password) {
-    $options['json']["password"] = $password;
+    $options['json']['password'] = $password;
+
+    print_r($options);
+
     try {
       $response = json_decode($this->client->post("auth/ldap/login/{$username}", $options)->getBody());
     }
@@ -43,8 +46,8 @@ class ConnectionVault extends ConnectionBase
   }
 
   public function connectByK8sJwt(string $jwt, string $role) {
-    $options['json']["jwt"] = $jwt;
-    $options['json']["role"] = $role;
+    $options['json']['jwt'] = $jwt;
+    $options['json']['role'] = $role;
 
     try {
       $response = json_decode($this->client->post("auth/kubernetes/login", $options)->getBody());
@@ -60,7 +63,7 @@ class ConnectionVault extends ConnectionBase
     if($response != null) {
       //set the default header to use for future requests
       $clientConfig = $this->client->getConfig();
-      $clientConfig['headers']['X-Vault-Token'] = $response->auth->client_token;
+      $clientConfig['headers']['X-Vault-Token'] = $response->auth->client_token; 
       $this->client = new Client($clientConfig);
       //populate the connection
       $this->connection = $response;

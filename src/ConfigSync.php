@@ -180,25 +180,25 @@ class ConfigSync extends ConfigSyncCommandBase
             exit();
         }
 
-        $configEnvrionment = (new ConfigEnvironmentFactory())->getConfigEnvironment($environment);
+        $configEnvironment = (new ConfigEnvironmentFactory())->getConfigEnvironment($environment);
 
         //TODO: need to move these three into their matching ConfigEnvironmentXYZ
-        if($configEnvrionment->getConfig()['auth'] == "token") {
-            $credentials['token'] = $configEnvrionment->getConfig()['token'];
+        if($configEnvironment->getConfig()['auth'] == "token") {
+            $credentials['token'] = $configEnvironment->getConfig()['token'];
           }
           
-        if($configEnvrionment->getConfig()['auth'] == "ldap") {
+        if($configEnvironment->getConfig()['auth'] == "ldap") {
             $credentials['username'] = $this->ask('LDAP Username');
             $credentials['password'] = $this->secret('LDAP Password');
         }
 
-        if($configEnvrionment->getConfig()['auth'] == "kubernetes") {
+        if($configEnvironment->getConfig()['auth'] == "kubernetes") {
             $credentials['jwt'] = file_get_contents('/var/run/secrets/kubernetes.io/serviceaccount/token');
-            $credentials['role'] = $configEnvrionment->getConfig()['role'];
+            $credentials['role'] = $configEnvironment->getConfig()['role'];
         }
           
-        $configEnvrionmentConnection = $configEnvrionment->getEnvironmentConnection($credentials);
-        $successFlag = $configBackend->sync($configEnvrionment, $configEnvrionmentConnection);
+        $configEnvironmentConnection = $configEnvironment->getEnvironmentConnection($credentials);
+        $successFlag = $configBackend->sync($configEnvironment, $configEnvironmentConnection);
 
         if(!$successFlag) {
             $this->heading("Step 2. ...uh oh, data did not synchronize!");

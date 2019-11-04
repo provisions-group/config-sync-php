@@ -6,6 +6,10 @@ use Illuminate\Encryption\Encrypter;
 use BeyondCode\Credentials\Credentials;
 
 function env_secure($key, $default = null) {
+  if(env('APP_KEY') == null || env('APP_KEY') == "") {
+    return env($key, $default);
+  }
+
   if (Str::startsWith($encryptionKey = env('APP_KEY'), 'base64:')) {
     $encryptionKey = base64_decode(substr($encryptionKey, 7));
   }

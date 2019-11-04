@@ -33,8 +33,6 @@ class ConnectionVault extends ConnectionBase
   public function connectByLdapUserPass(string $username, string $password) {
     $options['json']['password'] = $password;
 
-    print_r($options);
-
     try {
       $response = json_decode($this->client->post("auth/ldap/login/{$username}", $options)->getBody());
     }

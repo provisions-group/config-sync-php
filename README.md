@@ -11,7 +11,7 @@ This repo contains a PHP library used for creating a Config Safe for the busines
   - VPN access into the environment
 - domain account in AWS based Cash Express LLC domain
 - Configuration stored in developer mount in Vault
-- See Mike Rabius if you need a developer account or access to VPN
+- See the CIO or an admin if you need a developer account or access to VPN
 - `developer` environment (see below) will require additional setup in your `.env` file
 
 ## Command

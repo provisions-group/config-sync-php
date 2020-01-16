@@ -45,7 +45,7 @@ The `local` environment will create a Config Safe from your local Vault server u
 
 ### developer environment
 
-The `developer` environment will create a Config Safe from your developer mount in Vault. This requires that Mike Rabius has setup your developer mount in the https://vault.cashexpressllc.com Vault. The first time, you will need to add the following to your local `.env` file:
+The `developer` environment will create a Config Safe from your developer mount in Vault. This requires the CIO or Vault admin has setup your developer mount in the https://vault.cashexpressllc.com Vault. The first time, you will need to add the following to your local `.env` file:
 
 > VAULT_MOUNT=auditor-portal/kv/local/your.username
 > VAULT_SECRET=app

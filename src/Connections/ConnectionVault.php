@@ -24,6 +24,7 @@ class ConnectionVault extends ConnectionBase
       $response = json_decode($this->client->post("auth/token/create", $options)->getBody());
     }
     catch(ConnectException $ce) {
+      Log::channel("stderr")->error("Cannot connect to {$this->client->getConfig()['base_uri']->getHost()}.");
       Log::channel("stderr")->error("Connection timed out.  Is the Vault Container running? Do you need to VPN?");
       exit();
     }
@@ -37,6 +38,7 @@ class ConnectionVault extends ConnectionBase
       $response = json_decode($this->client->post("auth/ldap/login/{$username}", $options)->getBody());
     }
     catch(ConnectException $ce) {
+      Log::channel("stderr")->error("Cannot connect to {$this->client->getConfig()['base_uri']->getHost()}.");
       Log::channel("stderr")->error("Connection timed out.  Is the Vault Container running? Do you need to VPN?");
       exit();
     }
@@ -51,6 +53,7 @@ class ConnectionVault extends ConnectionBase
       $response = json_decode($this->client->post("auth/kubernetes/login", $options)->getBody());
     }
     catch(ConnectException $ce) {
+      Log::channel("stderr")->error("Cannot connect to {$this->client->getConfig()['base_uri']->getHost()}.");
       Log::channel("stderr")->error("Connection timed out.  Is the Vault Container running? Do you need to VPN?");
       exit();
     }

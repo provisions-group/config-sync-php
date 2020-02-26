@@ -48,8 +48,9 @@ The `local` environment will create a Config Safe from your local Vault server u
 
 The `developer` environment will create a Config Safe from your developer mount in Vault. The first time, you will need to add the following to your local `.env` file:
 
-> VAULT_MOUNT=<location of Vault mount>
-> VAULT_SECRET=<vault secret name>
+> VAULT_MOUNT=location of Vault mount
+
+> VAULT_SECRET=vault secret name
 
 When authenticating with Vault, Config Sync assumes that you will use your LDAP username and password, but this can be changed in the config.
 

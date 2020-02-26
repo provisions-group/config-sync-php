@@ -1,6 +1,6 @@
 <?php
 
-namespace CashExpress\ConfigSync;
+namespace ProvisionsGroup\ConfigSync;
 
 use Illuminate\Support\ServiceProvider;
 

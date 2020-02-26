@@ -1,9 +1,9 @@
 <?php
 
-namespace CashExpress\ConfigSync\Connections;
+namespace ProvisionsGroup\ConfigSync\Connections;
 
 use Illuminate\Console\Command;
-use CashExpress\ConfigSync\Connections\ConnectionBase;
+use ProvisionsGroup\ConfigSync\Connections\ConnectionBase;
 
 interface ConnectionInterface 
 {

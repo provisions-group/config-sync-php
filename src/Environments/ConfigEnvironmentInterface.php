@@ -1,6 +1,6 @@
 <?php
 
-namespace CashExpress\ConfigSync\Environments;
+namespace ProvisionsGroup\ConfigSync\Environments;
 
 use Illuminate\Console\Command;
 

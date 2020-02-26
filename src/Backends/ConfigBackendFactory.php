@@ -1,6 +1,6 @@
 <?php
 
-namespace CashExpress\ConfigSync\Backends;
+namespace ProvisionsGroup\ConfigSync\Backends;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;

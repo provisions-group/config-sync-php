@@ -3,13 +3,13 @@
 return [
   'backends' => [
     'vault' => [
-      'class' => CashExpress\ConfigSync\Backends\ConfigBackendVault::class,
+      'class' => ProvisionsGroup\ConfigSync\Backends\ConfigBackendVault::class,
     ],
   ],
 
   'environments' => [
     'local' => [
-      'class' => CashExpress\ConfigSync\Environments\ConfigEnvironmentLocalVault::class,
+      'class' => ProvisionsGroup\ConfigSync\Environments\ConfigEnvironmentLocalVault::class,
       'base_uri' => env('VAULT_ADDR', 'http://localhost:8200'),
       'mount_to_sync' => 'auditor-portal',
       'secret_to_sync' => 'local/developer',
@@ -20,8 +20,8 @@ return [
       'config_file_path' => env('APP_CONFIG_FILE','./config.safe.env')
     ],
     'developer' => [
-      'class' => CashExpress\ConfigSync\Environments\ConfigEnvironmentDeveloperVault::class,
-      'base_uri' => env('VAULT_ADDR', 'https://vault.cashexpressllc.com'),
+      'class' => ProvisionsGroup\ConfigSync\Environments\ConfigEnvironmentDeveloperVault::class,
+      'base_uri' => env('VAULT_ADDR', 'https://vault.provisionsgroupllc.com'),
       'mount_to_sync' => env('VAULT_MOUNT',''),
       'secret_to_sync' => env('VAULT_SECRET',''),
       'api_version' => 'v1',
@@ -30,8 +30,8 @@ return [
       'config_file_path' => env('APP_CONFIG_FILE','./config.safe.env')
     ],
     'kubernetes' => [
-      'class' => CashExpress\ConfigSync\Environments\ConfigEnvironmentKubernetesVault::class,
-      'base_uri' => env('VAULT_ADDR', 'https://vault.cashexpressllc.com'),
+      'class' => ProvisionsGroup\ConfigSync\Environments\ConfigEnvironmentKubernetesVault::class,
+      'base_uri' => env('VAULT_ADDR', 'https://vault.provisionsgroupllc.com'),
       'mount_to_sync' => env('VAULT_MOUNT',''),
       'secret_to_sync' => env('VAULT_SECRET',''),
       'api_version' => 'v1',

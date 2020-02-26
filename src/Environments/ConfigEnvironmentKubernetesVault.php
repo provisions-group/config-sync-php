@@ -1,9 +1,9 @@
 <?php
 
-namespace CashExpress\ConfigSync\Environments;
+namespace ProvisionsGroup\ConfigSync\Environments;
 
 use Illuminate\Console\Command;
-use CashExpress\ConfigSync\Connections\ConnectionVault;
+use ProvisionsGroup\ConfigSync\Connections\ConnectionVault;
 
 class ConfigEnvironmentKubernetesVault extends ConfigEnvironmentBase
 {

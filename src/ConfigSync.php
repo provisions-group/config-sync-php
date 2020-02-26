@@ -1,14 +1,14 @@
 <?php
 
-namespace CashExpress\ConfigSync;
+namespace ProvisionsGroup\ConfigSync;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Helper\TableCell;
 use Symfony\Component\Console\Helper\TableSeparator;
-use CashExpress\ConfigSync\Backends\ConfigBackendBase;
-use CashExpress\ConfigSync\Backends\ConfigBackendFactory;
-use CashExpress\ConfigSync\Environments\ConfigEnvironmentFactory;
+use ProvisionsGroup\ConfigSync\Backends\ConfigBackendBase;
+use ProvisionsGroup\ConfigSync\Backends\ConfigBackendFactory;
+use ProvisionsGroup\ConfigSync\Environments\ConfigEnvironmentFactory;
 
 class ConfigSync extends ConfigSyncCommandBase
 {

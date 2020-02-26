@@ -1,11 +1,11 @@
 <?php
 
-namespace CashExpress\ConfigSync\Backends;
+namespace ProvisionsGroup\ConfigSync\Backends;
 
 use Illuminate\Console\Command;
-use CashExpress\ConfigSync\Connections\ConnectionBase;
-use CashExpress\ConfigSync\Connections\ConnectionInterface;
-use CashExpress\ConfigSync\Environments\ConfigEnvironmentInterface;
+use ProvisionsGroup\ConfigSync\Connections\ConnectionBase;
+use ProvisionsGroup\ConfigSync\Connections\ConnectionInterface;
+use ProvisionsGroup\ConfigSync\Environments\ConfigEnvironmentInterface;
 
 interface ConfigBackendInterface 
 {

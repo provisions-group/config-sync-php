@@ -1,13 +1,13 @@
 <?php
 
-namespace CashExpress\ConfigSync\Connections;
+namespace ProvisionsGroup\ConfigSync\Connections;
 
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 use Jippi\Vault\ServiceFactory;
 use Illuminate\Support\Facades\Log;
 use GuzzleHttp\Exception\ConnectException;
-use CashExpress\ConfigSync\Connections\ConnectionBase;
+use ProvisionsGroup\ConfigSync\Connections\ConnectionBase;
 
 class ConnectionVault extends ConnectionBase
 {

@@ -1,17 +1,18 @@
 # config-sync
 
-This repo contains a PHP library used for creating a Config Safe for the business applications that will be running either on your laptop or in one of the Kubernetes clusters deployed in AWS.
+Config Sync is a generic PHP Composer package that can be extended to support multiple backends - where today it only supports HashiCorp Vault - whose purpose is to synchronize a set of backend secrets data to a locally encrypted file.  Compared to a typical PHP Laravel apps, the design goals of the Config Sync are to,
+
+1. Replace the .env file; especially for secrets
+1. Replace the ENVIRONMENT variables; especially for secrets
+1. Decrease coupling for an app when accessing secrets or configuration data from a backend
+1. Support Kubernetes Pod secrets/configuration bootstrapping while still supporting local development
 
 ## Prerequisites
 
 - [composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos)
 - [PHP](https://www.php.net/manual/en/install.php)
-- access to https://vault.cashexpressllc.com through either
-  - Cash Express network access
-  - VPN access into the environment
-- domain account in AWS based Cash Express LLC domain
+- access to somewhere that HashiCorp vault is hosted
 - Configuration stored in developer mount in Vault
-- See the CIO or an admin if you need a developer account or access to VPN
 - `developer` environment (see below) will require additional setup in your `.env` file
 
 ## Command
@@ -45,13 +46,13 @@ The `local` environment will create a Config Safe from your local Vault server u
 
 ### developer environment
 
-The `developer` environment will create a Config Safe from your developer mount in Vault. This requires the CIO or Vault admin has setup your developer mount in the https://vault.cashexpressllc.com Vault. The first time, you will need to add the following to your local `.env` file:
+The `developer` environment will create a Config Safe from your developer mount in Vault. The first time, you will need to add the following to your local `.env` file:
 
-> VAULT_MOUNT=auditor-portal/kv/local/your.username
-> VAULT_SECRET=app
+> VAULT_MOUNT=<location of Vault mount>
+> VAULT_SECRET=<vault secret name>
 
-When authenticating with Vault, you will use your AD username and password, then you will have access to the appropriate developer mount.
+When authenticating with Vault, Config Sync assumes that you will use your LDAP username and password, but this can be changed in the config.
 
 ### kubernetes environment
 
-The `kubernetes` environment will create a Config Safe from the Vault in the environment where the applicaiton is running (i.e. https://vault-dev.cashexpressllc.com if the application is running in the DEV environment). This will use the JWT (Kubernetes ServiceAccount token) and the role (i.e. auditor-portal) to authenticate with Vault and fetch the secret for that role to create the Config Safe.
+The `kubernetes` environment will create a Config Safe from the Vault in the environment where the applicaiton is running. This will use the JWT (Kubernetes ServiceAccount token) and the role (i.e. auditor-portal) to authenticate with Vault and fetch the secret for that role to create the Config Safe.

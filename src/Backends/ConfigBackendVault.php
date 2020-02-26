@@ -1,15 +1,15 @@
 <?php
 
-namespace CashExpress\ConfigSync\Backends;
+namespace ProvisionsGroup\ConfigSync\Backends;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 use BeyondCode\Credentials\Credentials;
-use CashExpress\ConfigSync\Connections\ConnectionBase;
-use CashExpress\ConfigSync\Connections\ConnectionVault;
-use CashExpress\ConfigSync\Connections\ConnectionInterface;
-use CashExpress\ConfigSync\Environments\ConfigEnvironmentBase;
-use CashExpress\ConfigSync\Environments\ConfigEnvironmentInterface;
+use ProvisionsGroup\ConfigSync\Connections\ConnectionBase;
+use ProvisionsGroup\ConfigSync\Connections\ConnectionVault;
+use ProvisionsGroup\ConfigSync\Connections\ConnectionInterface;
+use ProvisionsGroup\ConfigSync\Environments\ConfigEnvironmentBase;
+use ProvisionsGroup\ConfigSync\Environments\ConfigEnvironmentInterface;
 
 class ConfigBackendVault extends ConfigBackendBase
 {

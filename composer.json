@@ -1,5 +1,5 @@
 {
-    "name": "provisions-group/config-sync-php",
+    "name": "provisionsgroup/config-sync-php",
     "description": "Add remote configuration synchronization to Laravel",
     "type": "project",
     "license": "MIT",

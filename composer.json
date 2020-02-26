@@ -2,7 +2,7 @@
     "name": "provisions-group/config-sync-php",
     "description": "Add remote configuration synchronization to Laravel",
     "type": "project",
-    "license": "internal",
+    "license": "MIT",
     "authors": [
         {
             "name": "Eric Hendrickson",
@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "guzzlehttp/guzzle": "~6.3.3",
+        "guzzlehttp/guzzle": "~6.5.2",
         "beyondcode/laravel-credentials": "^1.3"
     },
     "autoload": {

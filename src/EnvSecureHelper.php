@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\App;
 use Illuminate\Encryption\Encrypter;
 use BeyondCode\Credentials\Credentials;
 
@@ -10,9 +8,10 @@ function env_secure($key, $default = null) {
     return env($key, $default);
   }
 
-  if (Str::startsWith($encryptionKey = env('APP_KEY'), 'base64:')) {
-    $encryptionKey = base64_decode(substr($encryptionKey, 7));
-  }
+  $encryptionKey = env('APP_KEY');
+  if (strpos($encryptionKey, 'base64:') === 0) {
+     $encryptionKey = base64_decode(substr($encryptionKey, 7));
+   }
   $encrypter = new Encrypter($encryptionKey, 'AES-256-CBC');
 
   $credentials = new Credentials($encrypter); 

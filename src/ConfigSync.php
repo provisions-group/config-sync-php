@@ -187,6 +187,11 @@ class ConfigSync extends ConfigSyncCommandBase
             $credentials['token'] = $configEnvironment->getConfig()['token'];
           }
           
+        if($configEnvironment->getConfig()['auth'] == "userpass") {
+            $credentials['username'] = $this->ask('Vault Username');
+            $credentials['password'] = $this->secret('Vault Password');
+        }
+
         if($configEnvironment->getConfig()['auth'] == "ldap") {
             $credentials['username'] = $this->ask('LDAP Username');
             $credentials['password'] = $this->secret('LDAP Password');

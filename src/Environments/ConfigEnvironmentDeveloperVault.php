@@ -17,7 +17,12 @@ class ConfigEnvironmentDeveloperVault extends ConfigEnvironmentBase
 
   public function getEnvironmentConnection($credentials) : ConnectionVault {
     $connectionVault = new ConnectionVault($this->config['base_uri']);
-    $connectionVault->connectByLdapUserPass($credentials['username'], $credentials['password']);
+    if($this->getConfig()['auth'] == "userpass") {
+      $connectionVault->connectByVaultUserPass($credentials['username'], $credentials['password']);
+    }
+    elseif($this->getConfig()['auth'] == "ldap") {
+      $connectionVault->connectByLdapUserPass($credentials['username'], $credentials['password']);
+    }
     return $connectionVault;
   }
 

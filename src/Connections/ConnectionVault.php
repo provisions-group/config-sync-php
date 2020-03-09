@@ -15,7 +15,7 @@ class ConnectionVault extends ConnectionBase
   private $connection;
 
   public function __construct($baseUri, $apiVersion="v1") {
-    $this->client = new Client(["base_uri" => "{$baseUri}/{$apiVersion}/", 'timeout'  => 5.0]);
+    $this->client = new Client(["base_uri" => "{$baseUri}/{$apiVersion}/", 'timeout'  => 5.0, 'verify' => false]);
   }
 
   public function connectByToken(string $vaultToken) {
@@ -36,6 +36,20 @@ class ConnectionVault extends ConnectionBase
 
     try {
       $response = json_decode($this->client->post("auth/ldap/login/{$username}", $options)->getBody());
+    }
+    catch(ConnectException $ce) {
+      Log::channel("stderr")->error("Cannot connect to {$this->client->getConfig()['base_uri']->getHost()}.");
+      Log::channel("stderr")->error("Connection timed out.  Is the Vault Container running? Do you need to VPN?");
+      exit();
+    }
+     $this->setClientAndConnectionFromResponse($response);
+  }
+
+  public function connectByVaultUserPass(string $username, string $password) {
+    $options['json']['password'] = $password;
+
+    try {
+      $response = json_decode($this->client->post("auth/userpass/login/{$username}", $options)->getBody());
     }
     catch(ConnectException $ce) {
       Log::channel("stderr")->error("Cannot connect to {$this->client->getConfig()['base_uri']->getHost()}.");

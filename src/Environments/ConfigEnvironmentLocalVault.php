@@ -17,7 +17,7 @@ class ConfigEnvironmentLocalVault extends ConfigEnvironmentBase
 
   public function getEnvironmentConnection($credentials) : ConnectionVault {
     $connectionVault = new ConnectionVault($this->config['base_uri']);
-    $connectionVault->connectByToken($credentials['token']);
+    $connectionVault->connectByToken($credentials['token'], $this->config['auth_path']);
     return $connectionVault;
   }
 

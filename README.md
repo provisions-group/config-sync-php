@@ -23,7 +23,7 @@ php artisan config:sync --backend=vault --environment=developer
 
 ## Options
 
-There are two options that can be specified:
+There are four options that can be specified:
 
 ```
 --backend=vault : The backend to use for config values
